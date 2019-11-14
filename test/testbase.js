@@ -2,7 +2,6 @@
 
 const { expect } = require('chai');
 const Mocha  = require('mocha');
-const BI = require('BigInt');
 
 const Base = require('../lib/base.js');
 const LSeqNode = require('../lib/lseqnode.js');
