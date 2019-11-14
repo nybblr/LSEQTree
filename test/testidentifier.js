@@ -110,7 +110,7 @@ describe('positions.js', function() {
     describe('fromNode', function() {
         it('convert a simple node to an identifier', function() {
             const base = new Base(3);
-            const node = new LSeqNode([new Triple(1,3,0), new Triple(5,3,2)]);
+            const node = new LSeqNode([Triple(1,3,0), Triple(5,3,2)]);
             const id = (new Identifier(base)).fromNode(node);
             const onefive = 21n; // [1.5];
             expect(id._d).to.be.eql(onefive);

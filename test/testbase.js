@@ -35,43 +35,43 @@ describe('base.js', function() {
     describe('getInterval', function() {
         it('should return an empty interval at lvl 0', function() {
             const base = new Base(3);
-            const id1= new LSeqNode([new Triple(1,0,0), new Triple(1,0,0)], "");
-            const id2= new LSeqNode([new Triple(1,0,0), new Triple(15,0,0)],"");
+            const id1= new LSeqNode([Triple(1,0,0), Triple(1,0,0)], "");
+            const id2= new LSeqNode([Triple(1,0,0), Triple(15,0,0)],"");
             expect(base.getInterval(0, id1, id2)).to.be.eql(0);
         });
 
         it('should return an interval at level 1 of 13', function() {
             const base = new Base(3);
-            const id1= new LSeqNode([new Triple(1,0,0), new Triple(1,0,0)], "");
-            const id2= new LSeqNode([new Triple(1,0,0), new Triple(15,0,0)],"");
+            const id1= new LSeqNode([Triple(1,0,0), Triple(1,0,0)], "");
+            const id2= new LSeqNode([Triple(1,0,0), Triple(15,0,0)],"");
             expect(base.getInterval(1, id1, id2)).to.be.eql(13);
         });
 
         it('should return an interval at level 1 of 14', function() {
             const base = new Base(3);
-            const id1= new LSeqNode([new Triple(1,0,0)], "");
-            const id2= new LSeqNode([new Triple(1,0,0), new Triple(15,0,0)],"");
+            const id1= new LSeqNode([Triple(1,0,0)], "");
+            const id2= new LSeqNode([Triple(1,0,0), Triple(15,0,0)],"");
             expect(base.getInterval(1, id1, id2)).to.be.eql(14);
         });
 
         it('should return an interval at level 1 of 11', function() {
             const base = new Base(3);
-            const id1= new LSeqNode([new Triple(1,0,0), new Triple(4,0,0)], "");
-            const id2= new LSeqNode([new Triple(1,0,0), new Triple(3,0,0)], "");
+            const id1= new LSeqNode([Triple(1,0,0), Triple(4,0,0)], "");
+            const id2= new LSeqNode([Triple(1,0,0), Triple(3,0,0)], "");
             expect(base.getInterval(1, id1, id2)).to.be.eql(11);
         });
 
         it('process interval between close paths with LSEQNode @0', function() {
             const base = new Base(3);
-            const id1= new LSeqNode([new Triple(1,0,0)], "");            
-            const id2= new LSeqNode([new Triple(2,0,0)], "");
+            const id1= new LSeqNode([Triple(1,0,0)], "");            
+            const id2= new LSeqNode([Triple(2,0,0)], "");
             expect(base.getInterval(0, id1, id2)).to.be.eql(0);
         });
 
         it('process interval between close paths with LSEQNode @1', function() {
             const base = new Base(3);
-            const id1= new LSeqNode([new Triple(1,0,0)], "");
-            const id2= new LSeqNode([new Triple(2,0,0)], "");
+            const id1= new LSeqNode([Triple(1,0,0)], "");
+            const id2= new LSeqNode([Triple(2,0,0)], "");
             expect(base.getInterval(1, id1, id2)).to.be.eql(15);
         });
         

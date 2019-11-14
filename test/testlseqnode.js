@@ -10,15 +10,15 @@ describe('lseqnode.js', function() {
     
     describe('constructor', function() {
         it('returns a node of length 1', function() {
-            const node = new LSeqNode([new Triple(1,2,3)], 'a');
+            const node = new LSeqNode([Triple(1,2,3)], 'a');
             expect(node.subCounter).to.be.eql(0);
             expect(node.e).to.be.eql('a');
             expect(node.children.length).to.be.eql(0);
         });
         it('returns a node of length 3', function() {
-            const node = new LSeqNode([new Triple(1,2,3),
-                                       new Triple(4,5,6),
-                                       new Triple(7,8,9)], 'a');
+            const node = new LSeqNode([Triple(1,2,3),
+                                       Triple(4,5,6),
+                                       Triple(7,8,9)], 'a');
             expect(node.subCounter).to.be.eql(1);
             expect(node.child.subCounter).to.be.eql(1);
             expect(node.child.child.subCounter).to.be.eql(0);
@@ -29,20 +29,20 @@ describe('lseqnode.js', function() {
 
     describe("add", function() {
         it('construct a tree of two elements (1 subpath)', function() {
-            const root = new LSeqNode([new Triple(1,2,3)], 'a');
-            const other = new LSeqNode([new Triple(4,5,6),
-                                        new Triple(7,8,9)], 'b');
+            const root = new LSeqNode([Triple(1,2,3)], 'a');
+            const other = new LSeqNode([Triple(4,5,6),
+                                        Triple(7,8,9)], 'b');
             root.add(other);
             expect(root.subCounter).to.be.eql(1);
         });
         
         it('construct a tree of two elements (2 subpath)', function() {
-            const root = new LSeqNode([new Triple(1,2,3)], 'a');
-            const b = new LSeqNode([new Triple(4,5,6),
-                                    new Triple(7,8,9)], 'b');
+            const root = new LSeqNode([Triple(1,2,3)], 'a');
+            const b = new LSeqNode([Triple(4,5,6),
+                                    Triple(7,8,9)], 'b');
             root.add(b);
-            const c = new LSeqNode([new Triple(4,5,6),
-                                    new Triple(10,11,12)], 'c');
+            const c = new LSeqNode([Triple(4,5,6),
+                                    Triple(10,11,12)], 'c');
             root.add(c);
             expect(root.subCounter).to.be.eql(2);
             expect(root.children.length).to.be.eql(1);
@@ -51,13 +51,13 @@ describe('lseqnode.js', function() {
         it('construct a tree, verify if index are at right positions',
            function() {
                const root = new LSeqNode([], 'a');
-               const b = new LSeqNode([new Triple(1,1,1)], 'b');
+               const b = new LSeqNode([Triple(1,1,1)], 'b');
                root.add(b);              
-               const c = new LSeqNode([new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'c');
+               const c = new LSeqNode([Triple(2,2,2),
+                                       Triple(3,3,3)], 'c');
                root.add(c);
-               const d = new LSeqNode([new Triple(2,2,2),
-                                       new Triple(4,4,4)], 'd');
+               const d = new LSeqNode([Triple(2,2,2),
+                                       Triple(4,4,4)], 'd');
                root.add(d);
                expect(root.subCounter).to.be.eql(3);
                expect(root.indexOf(b)).to.be.eql(1);
@@ -67,10 +67,10 @@ describe('lseqnode.js', function() {
         it ('construct a tree and insert an element within existing branch',
             function() {
                 const root = new LSeqNode([],'a');
-                const c = new LSeqNode([new Triple(1,1,1),
-                                        new Triple(3,3,3)], 'c');
+                const c = new LSeqNode([Triple(1,1,1),
+                                        Triple(3,3,3)], 'c');
                 root.add(c);                
-                const b = new LSeqNode([new Triple(1,1,1)], 'b');
+                const b = new LSeqNode([Triple(1,1,1)], 'b');
                 root.add(b);
                 expect(root.subCounter).to.be.eql(2);
                 expect(root.indexOf(c)).to.be.eql(2);
@@ -81,9 +81,9 @@ describe('lseqnode.js', function() {
         it('get the values at the given index in a simple tree',
            function() {
                const root = new LSeqNode([], 'a');               
-               const b = new LSeqNode([new Triple(1,1,1)], 'b');
+               const b = new LSeqNode([Triple(1,1,1)], 'b');
                root.add(b);                   
-               const c = new LSeqNode([new Triple(2,2,2)], "c");
+               const c = new LSeqNode([Triple(2,2,2)], "c");
                root.add(c);
                expect(root.subCounter).to.be.eql(2);
                expect(root.get(1)).to.be.eql(b);
@@ -92,15 +92,15 @@ describe('lseqnode.js', function() {
         it('get the values at the given index with tree of depth 2',
            function() {
                const root = new LSeqNode([], 'a');               
-               const b = new LSeqNode([new Triple(1,1,1)], 'b');
+               const b = new LSeqNode([Triple(1,1,1)], 'b');
                root.add(b);               
-               const d = new LSeqNode([new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'd');
+               const d = new LSeqNode([Triple(2,2,2),
+                                       Triple(3,3,3)], 'd');
                root.add(d);               
-               const c = new LSeqNode([new Triple(2,2,2)], 'c');
+               const c = new LSeqNode([Triple(2,2,2)], 'c');
                // recreate for d is modified in root
-               const dd = new LSeqNode([new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'd');
+               const dd = new LSeqNode([Triple(2,2,2),
+                                        Triple(3,3,3)], 'd');
                root.add(c);               
                expect(root.get(1)).to.be.eql(b);
                expect(root.get(2)).to.be.eql(c);
@@ -111,9 +111,9 @@ describe('lseqnode.js', function() {
     describe('del', function() {
         it('should delete a node of the simple tree', function() {
             const root = new LSeqNode([], 'a');
-            const b = new LSeqNode([new Triple(1,1,1)], 'b');
+            const b = new LSeqNode([Triple(1,1,1)], 'b');
             root.add(b);            
-            const c = new LSeqNode([new Triple(2,2,2)], 'c');
+            const c = new LSeqNode([Triple(2,2,2)], 'c');
             root.add(c);
             expect(root.indexOf(c)).to.be.eql(2);
             root.del(b);
@@ -123,15 +123,15 @@ describe('lseqnode.js', function() {
         it('should delete all intermediary nodes in a useless path',
            function() {
                const root = new LSeqNode([], 'a');               
-               const b = new LSeqNode([new Triple(1,1,1),
-                                       new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'b');
+               const b = new LSeqNode([Triple(1,1,1),
+                                       Triple(2,2,2),
+                                       Triple(3,3,3)], 'b');
                root.add(b);               
-               const c = new LSeqNode([new Triple(1,1,1)], 'c');
+               const c = new LSeqNode([Triple(1,1,1)], 'c');
                root.add(c);               
-               const db = new LSeqNode([new Triple(1,1,1),
-                                       new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'b');               
+               const db = new LSeqNode([Triple(1,1,1),
+                                       Triple(2,2,2),
+                                       Triple(3,3,3)], 'b');               
                expect(root.indexOf(c)).to.be.eql(1);
                expect(root.indexOf(b)).to.be.eql(2);
                root.del(db);
@@ -143,28 +143,28 @@ describe('lseqnode.js', function() {
         it('more complexe tree, remove the subtree but not all nodes',
            function() {
                const root = new LSeqNode([], 'a');               
-               const b = new LSeqNode([new Triple(1,1,1),
-                                       new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'b');
+               const b = new LSeqNode([Triple(1,1,1),
+                                       Triple(2,2,2),
+                                       Triple(3,3,3)], 'b');
                root.add(b);               
-               const c = new LSeqNode([new Triple(1,1,1)], 'c');
+               const c = new LSeqNode([Triple(1,1,1)], 'c');
                root.add(c);               
-               const d = new LSeqNode([new Triple(1,1,1),
-                                       new Triple(2,2,2),
-                                       new Triple(4,4,4),
-                                       new Triple(5,5,5)], 'd');
+               const d = new LSeqNode([Triple(1,1,1),
+                                       Triple(2,2,2),
+                                       Triple(4,4,4),
+                                       Triple(5,5,5)], 'd');
                root.add(d);                    
                // remove the elements
-               const db = new LSeqNode([new Triple(1,1,1),
-                                        new Triple(2,2,2),
-                                        new Triple(3,3,3)], 'b');
+               const db = new LSeqNode([Triple(1,1,1),
+                                        Triple(2,2,2),
+                                        Triple(3,3,3)], 'b');
                expect(root.indexOf(c)).to.be.eql(1);
                expect(root.indexOf(db)).to.be.eql(2);
                expect(root.indexOf(d)).to.be.eql(3);
                root.del(db);
                expect(root.indexOf(c)).to.be.eql(1);
                expect(root.indexOf(d)).to.be.eql(2);
-               const dc = new LSeqNode([new Triple(1,1,1)], 'c');
+               const dc = new LSeqNode([Triple(1,1,1)], 'c');
                root.del(dc);
                expect(root.indexOf(d)).to.be.eql(1);
            });
@@ -173,13 +173,13 @@ describe('lseqnode.js', function() {
         it('get the list of succesive indexes of a path in a tree',
            function() {
                const root = new LSeqNode();               
-               const a = new LSeqNode([new Triple(1,1,1)], 'a');
+               const a = new LSeqNode([Triple(1,1,1)], 'a');
                root.add(a);               
-               const b = new LSeqNode([new Triple(2,2,2),
-                                       new Triple(3,3,3)], 'b');
+               const b = new LSeqNode([Triple(2,2,2),
+                                       Triple(3,3,3)], 'b');
                root.add(b);               
-               const c = new LSeqNode([new Triple(2,2,2),
-                                       new Triple(4,4,4)], 'c');
+               const c = new LSeqNode([Triple(2,2,2),
+                                       Triple(4,4,4)], 'c');
                root.add(c);
                expect(root.subCounter).to.be.eql(3);
                expect(root.indexOf(a)).to.be.eql(0);
