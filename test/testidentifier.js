@@ -1,6 +1,6 @@
 'use strict';
 
-const expect = require('expect.js');
+const { expect } = require('chai');
 const BI = require('BigInt');
 const Mocha  = require('mocha');
 
@@ -16,7 +16,7 @@ describe('positions.js', function() {
         it('is initialized correctly', function() {
             const base = new Base(3);
             const i1 = new Identifier(base, BI.int2bigInt(0,1),[0],[0]);
-            expect(BI.isZero(i1._d)).to.be.ok();
+            expect(BI.isZero(i1._d)).to.be.eql(1);
             expect(i1._s).to.have.length(1);
             expect(i1._c).to.have.length(1);
         });

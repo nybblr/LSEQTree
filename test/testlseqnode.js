@@ -1,6 +1,6 @@
 'use strict';
 
-const expect = require('expect.js');
+const { expect } = require('chai');
 const Mocha = require('mocha');
 
 const LSeqNode = require('../lib/lseqnode.js');

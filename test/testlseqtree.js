@@ -1,6 +1,6 @@
 'use strict';
 
-const expect = require('expect.js');
+const { expect } = require('chai');
 const Mocha = require('mocha');
 
 const LSeqTree = require('../lib/lseqtree.js');
@@ -89,7 +89,7 @@ describe('lseqtree.js', function() {
                const lseq2 = new LSeqTree(1337);
                const added = lseq.applyInsert(ei);
                expect(added).to.be.eql(false);
-               const position = lseq2.applyInsert(ei);
+               const position = lseq2.applyInsert(ei, false);
                expect(position).to.be.eql(1);
            });
     });
