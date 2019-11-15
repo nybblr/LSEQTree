@@ -99,11 +99,11 @@ describe('positions.js', function() {
                                       [3,3],[0,2]); // d:[1.5]
             const resultNode = i1.toNode();
             expect(resultNode.t.p).to.be.eql(1);
-            expect(resultNode.child.t.p).to.be.eql(5);
+            expect(resultNode.child().t.p).to.be.eql(5);
             expect(resultNode.t.s).to.be.eql(3);
-            expect(resultNode.child.t.s).to.be.eql(3);
+            expect(resultNode.child().t.s).to.be.eql(3);
             expect(resultNode.t.c).to.be.eql(0);
-            expect(resultNode.child.t.c).to.be.eql(2);
+            expect(resultNode.child().t.c).to.be.eql(2);
         });
     });
     

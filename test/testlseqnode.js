@@ -20,9 +20,9 @@ describe('lseqnode.js', function() {
                                        Triple(4,5,6),
                                        Triple(7,8,9)], 'a');
             expect(node.subCounter).to.be.eql(1);
-            expect(node.child.subCounter).to.be.eql(1);
-            expect(node.child.child.subCounter).to.be.eql(0);
-            expect(node.child.child.e).to.be.eql('a');
+            expect(node.child().subCounter).to.be.eql(1);
+            expect(node.child().child().subCounter).to.be.eql(0);
+            expect(node.child().child().e).to.be.eql('a');
             expect(node.children.length).to.be.eql(1);
         });
     });
@@ -46,7 +46,7 @@ describe('lseqnode.js', function() {
             root.add(c);
             expect(root.subCounter).to.be.eql(2);
             expect(root.children.length).to.be.eql(1);
-            expect(root.child.children.length).to.be.eql(2);
+            expect(root.child().children.length).to.be.eql(2);
         });
         it('construct a tree, verify if index are at right positions',
            function() {
@@ -136,8 +136,8 @@ describe('lseqnode.js', function() {
                expect(root.indexOf(b)).to.be.eql(2);
                root.del(db);
                expect(root.indexOf(c)).to.be.eql(1);
-               expect(root.child.e).to.be.eql('c');
-               expect(root.child.children.length).to.be.eql(0);
+               expect(root.child().e).to.be.eql('c');
+               expect(root.child().children.length).to.be.eql(0);
            });
         
         it('more complexe tree, remove the subtree but not all nodes',
