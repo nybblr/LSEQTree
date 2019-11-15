@@ -103,5 +103,12 @@ describe('lseqtree.js', function() {
             expect(exist).to.be.eql(-1);
         });
     });
+    describe('get', function() {
+        it('throws a RangeError if asked for an out-of-bounds element', function() {
+            const lseq = new LSeqTree(42);
+            const ei = lseq.insert('a', 0);
+            expect(() => lseq.get(1)).to.throw(RangeError);
+        });
+    });
 
 });
