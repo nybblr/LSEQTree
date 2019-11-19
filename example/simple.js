@@ -1,6 +1,4 @@
-'use strict';
-
-const LSeqTree = require('../lib/lseqtree.js');
+import LSeqTree from '../lib/lseqtree.js';
 
 console.log('#1 We create a first distributed data structure for sequences');
 const lseq1 = new LSeqTree(1);

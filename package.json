@@ -4,6 +4,7 @@
     "author": "Chat-Wane <grumpy.chat.wane@gmail.com>",
     "description": "A data structure for distributed arrays using the LSeq allocation strategy.",
     "main": "./lib/lseqtree.js",
+    "type": "module",
     "repository": {
         "type": "git",
         "url": "https://github.com/chat-wane/LSEQTree"
@@ -20,6 +21,7 @@
     },
     "devDependencies": {
         "chai": "^4.2.0",
+        "esm": "^3.2.25",
         "mocha": "^6.2.2"
     },
     "bundledDependencies": [
@@ -28,7 +30,7 @@
     ],
     "scripts": {
         "esdoc": "esdoc && npm run",
-        "test": "mocha ./test/test*",
+        "test": "mocha --require=esm ./test/test*",
         "all": "npm run debug && npm run build && npm run esdoc && npm run test",
         "debug": "browserify -r ./lib/lseqtree.js:lseqtree -t [ babelify --presets [ es2015 ] ] --debug > build/lseqtree.bundle.debug.js",
         "build": "browserify -r ./lib/lseqtree.js:lseqtree -t [ babelify --presets [ es2015 ] ] > build/lseqtree.bundle.js"

@@ -1,9 +1,7 @@
-'use strict';
+import { expect } from 'chai';
+import Mocha from 'mocha';
 
-const { expect } = require('chai');
-const Mocha = require('mocha');
-
-const LSeqTree = require('../lib/lseqtree.js');
+import LSeqTree from '../lib/lseqtree.js';
 
 const N = 100000;
 

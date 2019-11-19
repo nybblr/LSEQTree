@@ -1,9 +1,9 @@
-const { expect } = require('chai');
-const Mocha  = require('mocha');
+import { expect } from 'chai';
+import Mocha from 'mocha';
 
-const Base = require('../lib/base.js');
-const LSeqNode = require('../lib/lseqnode.js');
-const Triple = require('../lib/triple.js');
+import Base from '../lib/base.js';
+import LSeqNode from '../lib/lseqnode.js';
+import Triple from '../lib/triple.js';
 
 describe('base.js', function() {
     

@@ -1,10 +1,10 @@
-const { expect } = require('chai');
-const Mocha  = require('mocha');
+import { expect } from 'chai';
+import Mocha from 'mocha';
 
-const Base = require('../lib/base.js');
-const Identifier = require('../lib/identifier.js');
-const Triple = require('../lib/triple.js');
-const LSeqNode = require('../lib/lseqnode.js');
+import Base from '../lib/base.js';
+import Identifier from '../lib/identifier.js';
+import Triple from '../lib/triple.js';
+import LSeqNode from '../lib/lseqnode.js';
 
 // using a departure base value of 3 bits
 describe('positions.js', function() {
