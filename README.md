@@ -1,68 +1,39 @@
 # LSEQTree
 
+Watch a 30-minute talk on LSEQ and related concurrent data structures:
+
+[What CRDTs, distributed editing and the speed of light means to your writer friends @ JSConf Colombia 2017](https://www.youtube.com/watch?v=2R6hc0WSHR8&list=PL1TdLOqoRHbrU4Yje0DbE_E4q-4DrvKPb&index=2)
+
 *Keywords: distributed systems, collaborative editing, CRDT, LSEQ allocation strategy, unique identifiers, tree-based array*
 
-This project aims to provide an implementation of a CRDT-based array [1] with 
-an underlying exponential tree and the allocation strategy LSeq [2].
-
-## Installation
-
-```
-$ npm install lseqtree
-```
-
-## Usage
-
-To include LSeqTree within your web browser, put the following line in your
-html:
-
-```html
-<script src="./path/to/bundle/lseqtree.bundle.js"></script>
-```
-
-In your JavaScript file:
-
-```javascript
-const LSeqTree = require('lseqtree');
-```
+This project aims to provide an implementation of a CRDT-based array [1] with an underlying exponential tree and the allocation strategy LSeq [2].
 
 ## Example
 
 ```javascript
-// #1 We create a first distributed data structure for sequences'
-const lseq1 = new LSeqTree(1);
+// LSEQ for site #1
+let lseq1 = new LSeqTree(1);
+// LSEQ for site #2 (e.g. on another machine)
+let lseq2 = new LSeqTree(2);
 
-// #2 We insert an element in the structure
-const idInsert = lseq1.insert('A', 0);
-console.log('\tSize of the 1st structure: ' + lseq1.length);
-// > Size of the 1st structure: 1
+// Insert "A" into site #1's copy
+let idInsert = lseq1.insert('A', 0);
 
-console.log('#A We initialize a second structure');
-const lseq2 = new LSeqTree(2);
-
-// #B We insert the element of the first structure
+// Relay site #1's change to site #2
 lseq2.applyInsert(idInsert);
-console.log('\tSize of the 1st structure: ' + lseq1.length);
-console.log('\tSize of the 2nd structure: ' + lseq2.length);
-// > Size of the 1st structure: 1
-// > Size of the 1st structure: 1
 
-console.log('\tCharacter at index 0: ' + lseq1.get(0));
-// > Character at index 0: A
+// Site #2 now has site #1's insert
+console.log(lseq2.get(0)); // => A
 
-// #C We remove the element at position 0, ie, character "A"
-const idDelete = lseq2.remove(0);
-console.log('\tSize of the 1st structure: ' + lseq1.length);
-console.log('\tSize of the 2nd structure: ' + lseq2.length);
-// > Size of the 1st structure: 1
-// > Size of the 2nd structure: 0
+// Delete character "A" from site #2's copy
+let idDelete = lseq2.remove(0);
 
-// #3 We apply the removal to the first structure
+// Relay site #2's delete to site #1
 lseq1.applyRemove(idDelete);
-console.log('\tSize of the 1st structure: ' + lseq1.length);
-console.log('\tSize of the 2nd structure: ' + lseq2.length);
-// > Size of the 2nd structure: 0
-// > Size of the 2nd structure: 0
+
+// Both sites should have empty copies
+console.log(lseq1.length); // => 0
+console.log(lseq2.length); // => 0
 ```
 
 ## Misc
