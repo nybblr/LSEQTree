@@ -7,7 +7,7 @@
     "type": "module",
     "repository": {
         "type": "git",
-        "url": "https://github.com/chat-wane/LSEQTree"
+        "url": "https://github.com/nybblr/LSEQTree"
     },
     "keywords": [
         "distributed structure",
@@ -24,16 +24,9 @@
         "esm": "^3.2.25",
         "mocha": "^6.2.2"
     },
-    "bundledDependencies": [
-        "BigInt",
-        "lodash.merge"
-    ],
     "scripts": {
         "esdoc": "esdoc && npm run",
-        "test": "mocha --require=esm ./test/test*",
-        "all": "npm run debug && npm run build && npm run esdoc && npm run test",
-        "debug": "browserify -r ./lib/lseqtree.js:lseqtree -t [ babelify --presets [ es2015 ] ] --debug > build/lseqtree.bundle.debug.js",
-        "build": "browserify -r ./lib/lseqtree.js:lseqtree -t [ babelify --presets [ es2015 ] ] > build/lseqtree.bundle.js"
+        "test": "mocha --require=esm ./test/test*"
     },
     "license": "MIT"
 }
